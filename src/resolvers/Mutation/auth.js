@@ -5,11 +5,14 @@ const auth = {
   async signup(parent, args, context) {
     const password = await bcrypt.hash(args.password, 10)
     const user = await context.prisma.createUser({ ...args, password })
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
 
-    return {
-      token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
-      user,
-    }
+    context.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 2
+    })
+
+    return { user }
   },
 
   async login(parent, { email, password }, context) {
@@ -21,10 +24,15 @@ const auth = {
     if (!passwordValid) {
       throw new Error('Invalid password')
     }
-    return {
-      token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
-      user,
-    }
+
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET)
+
+    context.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 2
+    })
+
+    return { user }
   },
 }
 

@@ -18,7 +18,6 @@ type Subscription {
 }
 
 type AuthPayload {
-  token: String!
   user: User!
 }
 
