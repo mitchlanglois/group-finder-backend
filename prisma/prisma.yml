@@ -1,5 +1,5 @@
 # Specifies the HTTP endpoint of your Prisma API (deployed to a Prisma Demo server).
-endpoint: https://us1.prisma.sh/public-mangrovehide-89/group-finder-backend/dev
+endpoint: https://us1.prisma.sh/group-finder/group-finder/dev
 
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma

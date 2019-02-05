@@ -16,6 +16,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://us1.prisma.sh/public-mangrovehide-89/group-finder-backend/dev`
+  endpoint: `https://us1.prisma.sh/group-finder/group-finder/dev`
 });
 exports.prisma = new exports.Prisma();
