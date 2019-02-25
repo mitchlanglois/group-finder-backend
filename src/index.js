@@ -1,4 +1,5 @@
 const { GraphQLServer } = require('graphql-yoga')
+const cookieParser = require('cookie-parser')
 const { prisma } = require('./generated/prisma-client')
 const resolvers = require('./resolvers')
 
@@ -12,6 +13,8 @@ const server = new GraphQLServer({
     }
   },
 })
+
+server.express.use(cookieParser())
 
 const options = {
   cors: {
