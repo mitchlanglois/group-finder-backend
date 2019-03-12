@@ -6,8 +6,6 @@ function getUserId(context) {
     const { userId } = jwt.verify(token, process.env.APP_SECRET)
     return userId
   }
-
-  throw new AuthError()
 }
 
 class AuthError extends Error {

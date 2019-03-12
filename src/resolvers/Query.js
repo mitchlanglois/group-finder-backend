@@ -19,7 +19,8 @@ const Query = {
   },
   me(parent, args, context) {
     const id = getUserId(context)
-    return context.prisma.user({ id })
+    if (id) return context.prisma.user({ id })
+    return null
   },
 }
 
