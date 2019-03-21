@@ -34,6 +34,11 @@ const auth = {
 
     return { user }
   },
+
+  logout(parent, args, context, info) {
+    context.response.clearCookie('token')
+    return { message: 'Successfully logged out.' }
+  }
 }
 
 module.exports = { auth }
