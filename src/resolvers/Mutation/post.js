@@ -1,11 +1,12 @@
 const { getUserId } = require('../../utils')
 
 const post = {
-  async createDraft(parent, { title, content }, context) {
+  async createPost(parent, { title, content }, context) {
     const userId = getUserId(context)
     return context.prisma.createPost({
       title,
       content,
+      published: true,
       author: { connect: { id: userId } },
     })
   },
